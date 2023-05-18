@@ -63,11 +63,6 @@ void OTA_Check()
        {
         lastrun_OTA = millis()/1000;              
         Serial.println("Entering OTA Mode");
-        lcd.clear();
-        lcd.setCursor(0,0);
-        lcd.print("Entering OTA");
-        //terminal.println("Entering OTA Mode");  
-        //terminal.flush(); 
        }
        
     if(millis()/1000 - lastrun_OTA > 10 * 60)
@@ -75,11 +70,6 @@ void OTA_Check()
         lastrun_OTA = 0;
         OTA_Mode = 0;        
         Serial.println("Exiting OTA");
-        lcd.clear();
-        lcd.setCursor(0,0);
-        lcd.print("Exiting OTA"); 
-        //terminal.println("Exiting OTA");  
-        //terminal.flush();
        }
   }
 }

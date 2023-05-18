@@ -63,8 +63,8 @@ void MQTT_publish()
       const size_t capacity = JSON_OBJECT_SIZE(3);
       DynamicJsonDocument doc(capacity);
       
-      doc["Light_state_1"]     = String(Light_state_1);
-      doc["Light_state_2"]     = String(Light_state_2);
+      doc["Light_state_1"]     = String(LED_State_1);
+      doc["Light_state_2"]     = String(LED_State_2);
       
       char data[256];
       serializeJson(doc, data, sizeof(data));
@@ -98,7 +98,7 @@ void MQTT_reconnect()
 
 
 
-void MQTT_MessageRecd_callback(char* topic, byte* payload, unsigned int length) 
+void MQTT_MessageRecd_callback(char* p_topic, byte* p_payload, unsigned int p_length) 
 {
   String payload;
   

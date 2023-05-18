@@ -52,7 +52,7 @@ unsigned long lastrun_Mid2, lastrun_slow, lastrun_Veryslow;
 unsigned long lastrun_30mins,lastrun_OTA;
 bool OTA_Mode=0;
 String webpage1="";
-
+ESP8266WebServer server(80);
 
 boolean LED_State_1, LED_State_2;
 

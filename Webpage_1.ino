@@ -13,19 +13,20 @@ void Prep_webpage1()
     // !!! ELements that don't change !!!
   String page_head ="<!DOCTYPE html><html><head><style>td,th{ border: 1px solid #dddddd; text-align: left; padding: 8px;} tr:nth-child(even){background-color: #dddddd;}</style></head>";
   String body_start = "<body>";
-  String body_table_start = String("<h2>") + DeviceHostName + String("</h2><h4>Updated: ") + String(timeStr) + String("</h4><table>");
+  String body_table_start = String("<h2>") + DeviceHostName + String("</h2><h4>Updated millis: ") + String(millis()) + String("</h4><table>");
   String body_table_row00 ="<tr><th>#</th><th>Description</th><th>Value</th><th>Unit</th></tr>";
   String body_end = "</table></body></html>";
 
   // Start chaning here onwards.....
 
-  String body_table_row00 =String("<tr><td>01</td><td> Empty</td><td>")        + String("-")       + String("</td><td>-</td></tr>");
+  String body_table_row01 =String("<tr><td>01</td><td> Empty</td><td>")        + String("-")       + String("</td><td>-</td></tr>");
      
 
   webpage1 = page_head +
   			 body_start +
   			 body_table_start +
-  			 body_table_row00 +  			 
+  			 body_table_row00 +  			
+         body_table_row01 +        
   			 body_end; 
          
 }
