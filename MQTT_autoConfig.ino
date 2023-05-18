@@ -107,12 +107,10 @@ void MQTT_MessageRecd_callback(char* p_topic, byte* p_payload, unsigned int p_le
 
   if (String(MQTT_TOPIC_CMD1).equals(p_topic)) 
   {
-    if (payload.equals(String(LIGHT_ON)))              
-        if(LED_State_1 != 1)
+    if (payload.equals(String(LIGHT_ON)))                      
           LED_Turn_on(1);        
     else 
-      if (payload.equals(String(LIGHT_OFF))) 
-        if(LED_State_1 != 0)
+      if (payload.equals(String(LIGHT_OFF)))         
           LED_Turn_off(1);
   } 
 
@@ -121,14 +119,14 @@ void MQTT_MessageRecd_callback(char* p_topic, byte* p_payload, unsigned int p_le
     if (String(MQTT_TOPIC_CMD2).equals(p_topic)) 
     {
       if (payload.equals(String(LIGHT_ON)))              
-          if(LED_State_2 != 1)
             LED_Turn_on(2);        
       else 
         if (payload.equals(String(LIGHT_OFF))) 
-          if(LED_State_2 != 0)
             LED_Turn_off(2);
     } 
   }
+
+  MQTT_publish();
 }
 
 //------------------------------------------
