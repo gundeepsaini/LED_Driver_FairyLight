@@ -60,13 +60,13 @@ void MQTT_loop()
 void MQTT_publish()
 {   
     if (LED_State_1)
-      client.publish(MQTT_TOPIC_STATE1, "1", true);
+      client.publish(MQTT_TOPIC_STATE1, LIGHT_ON, true);
     else
-      client.publish(MQTT_TOPIC_STATE1, "0", true);
+      client.publish(MQTT_TOPIC_STATE1, LIGHT_OFF, true);
     if (LED_State_2)
-      client.publish(MQTT_TOPIC_STATE2, "1", true);
+      client.publish(MQTT_TOPIC_STATE2, LIGHT_ON, true);
     else
-      client.publish(MQTT_TOPIC_STATE2, "0", true);
+      client.publish(MQTT_TOPIC_STATE2, LIGHT_OFF, true);
 }
 
 
@@ -137,6 +137,7 @@ void LED_Config()
   digitalWrite(LED_Strip_1, LED_State_1);
   digitalWrite(LED_Strip_2, LED_State_2);
 }
+
 
 
 void LED_Turn_on(int which_led)

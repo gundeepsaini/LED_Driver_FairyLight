@@ -8,7 +8,7 @@ Block Diagram & Circuit Diagram: OneNote Workbook
 
 Pin Connections:
   LED Strip 1   : D2 (4)
-  LED Strip 1   : D3 (0)
+  LED Strip 1   : D1 (5)
 
 Note:
   - Reset ESP after upload, disable IPv6, reset adapter, allow port in firewall
@@ -37,7 +37,7 @@ unsigned long looptime_Slow       = 30;            // in secs
 unsigned long looptime_VerySlow   = 15 *(60);      // in secs
 
 #define LED_Strip_1 4 
-#define LED_Strip_2 0  
+#define LED_Strip_2 5  
 
 
 /* ------------- VAR ------------------------------ */
