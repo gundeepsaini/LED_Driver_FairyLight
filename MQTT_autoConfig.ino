@@ -59,11 +59,14 @@ void MQTT_loop()
 
 void MQTT_publish()
 {   
-    char data1 = LED_State_1;
-    char data2 = LED_State_2
-
-    client.publish(MQTT_TOPIC_STATE1, data1, true);      
-    client.publish(MQTT_TOPIC_STATE2, data2, true);       
+    if (LED_State_1)
+      client.publish(MQTT_TOPIC_STATE1, "1", true);
+    else
+      client.publish(MQTT_TOPIC_STATE1, "0", true);
+    if (LED_State_2)
+      client.publish(MQTT_TOPIC_STATE2, "1", true);
+    else
+      client.publish(MQTT_TOPIC_STATE2, "0", true);
 }
 
 
