@@ -4,7 +4,6 @@
 #define MQTT_MAX_PACKET_SIZE 1024  // < ----- Change in lib: This is because the defaul maxium length is 128b. So just go to PubSubClient.h and change #define MQTT_MAX_PACKET_SIZE 128 to #define MQTT_MAX_PACKET_SIZE 1024
 
 #include "src/pubsubclient/PubSubClient.h"
-#include "ArduinoJson.h"
 
 
 /********************* Var *************************************/
@@ -27,7 +26,8 @@ const char* mqtt_password   = SECRET_MQTT_Pass;
 
 #define MQTT_TOPIC_CMD1      "HA/LED_Driver_Fairy/cmd1"
 #define MQTT_TOPIC_CMD2      "HA/LED_Driver_Fairy/cmd2"
-#define MQTT_TOPIC_STATE     "HA/LED_Driver_Fairy/state"
+#define MQTT_TOPIC_STATE1    "HA/LED_Driver_Fairy/state1"
+#define MQTT_TOPIC_STATE2    "HA/LED_Driver_Fairy/state2"
 
 #define LIGHT_ON    "ON"
 #define LIGHT_OFF   "OFF"
@@ -59,17 +59,11 @@ void MQTT_loop()
 
 void MQTT_publish()
 {   
-      // Use arduinojson.org/v6/assistant to compute the capacity.
-      const size_t capacity = JSON_OBJECT_SIZE(3);
-      DynamicJsonDocument doc(capacity);
-      
-      doc["Light_state_1"]     = String(LED_State_1);
-      doc["Light_state_2"]     = String(LED_State_2);
-      
-      char data[256];
-      serializeJson(doc, data, sizeof(data));
-      client.publish(MQTT_TOPIC_STATE, data, true);
-      Serial.println(data);
+    char data1 = LED_State_1;
+    char data2 = LED_State_2
+
+    client.publish(MQTT_TOPIC_STATE1, data1, true);      
+    client.publish(MQTT_TOPIC_STATE2, data2, true);       
 }
 
 
