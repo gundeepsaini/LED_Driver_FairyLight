@@ -39,12 +39,19 @@ unsigned long looptime_VerySlow   = 15 *(60);      // in secs
 #define LED_Strip_1 4 
 #define LED_Strip_2 5  
 
+#define External_Relay_1_pin 13  
+#define External_Relay_2_pin 12
+
+bool External_Relay_1_state=false;
+bool External_Relay_2_state=false;
+
+
 
 /* ------------- VAR ------------------------------ */
 const char* OTA_Password     = SECRET_Device_OTA_PASS; 
 const char* ssid             = SECRET_WIFI_SSID3;
 const char* pass             = SECRET_WIFI_PASS3;
-const char* DeviceHostName   = SECRET_Device_Name12;
+const char* DeviceHostName   = SECRET_Device_Name14;
 
 
 unsigned long lastrun_fast, lastrun_Mid1;
@@ -89,6 +96,7 @@ void setup()
   OTA_Config();
   MQTT_config();
   LED_Config();
+  config_relay();
   
   digitalWrite(LED_BUILTIN, HIGH);
   Serial.println("Ready");

@@ -9,7 +9,8 @@ void Always_loop()
 void Fast_Loop()
 {
     server.handleClient();
-    MQTT_loop();  
+    MQTT_loop();
+    set_relay();  
 }
 
 
