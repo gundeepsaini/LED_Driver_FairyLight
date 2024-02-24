@@ -42,9 +42,7 @@ unsigned long looptime_VerySlow   = 15 *(60);      // in secs
 #define External_Relay_1_pin 13  
 #define External_Relay_2_pin 12
 
-bool External_Relay_1_state=false;
-bool External_Relay_2_state=false;
-
+bool grow_light_state=false;
 
 
 /* ------------- VAR ------------------------------ */

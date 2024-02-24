@@ -41,9 +41,7 @@ const char* mqtt_password   = SECRET_MQTT_Pass;
 
 
 #define MQTT_TOPIC_CMD3      "HA/LED_Driver_Fairy/cmd3"
-#define MQTT_TOPIC_CMD4      "HA/LED_Driver_Fairy/cmd4"
 #define MQTT_TOPIC_STATE3    "HA/LED_Driver_Fairy/state3"
-#define MQTT_TOPIC_STATE4    "HA/LED_Driver_Fairy/state4"
 
 
 /**************** External Functions ************************************/
@@ -75,14 +73,10 @@ void MQTT_publish()
     else
       client.publish(MQTT_TOPIC_STATE2, LIGHT_OFF, true);
 
-    if (External_Relay_1_state)
+    if (grow_light_state)
       client.publish(MQTT_TOPIC_STATE3, LIGHT_ON, true);
     else
-      client.publish(MQTT_TOPIC_STATE3, LIGHT_OFF, true);
-    if (External_Relay_2_state)
-      client.publish(MQTT_TOPIC_STATE4, LIGHT_ON, true);
-    else
-      client.publish(MQTT_TOPIC_STATE4, LIGHT_OFF, true);
+      client.publish(MQTT_TOPIC_STATE3, LIGHT_OFF, true);    
 }
 
 
@@ -102,7 +96,7 @@ void MQTT_reconnect()
         client.subscribe(MQTT_TOPIC_CMD1);
         client.subscribe(MQTT_TOPIC_CMD2);
         client.subscribe(MQTT_TOPIC_CMD3);
-        client.subscribe(MQTT_TOPIC_CMD4);        
+              
 
         client.publish(MQTT_TOPIC_WILL, MQTT_ONLINE, true);
       }      
@@ -144,21 +138,12 @@ void MQTT_MessageRecd_callback(char* p_topic, byte* p_payload, unsigned int p_le
   if (String(MQTT_TOPIC_CMD3).equals(p_topic)) 
     {
       if (payload.equals(String(LIGHT_ON)))              
-            External_Relay_1_state = 1;          
+            handle_grow_light_cmd(1);          
       else 
         if (payload.equals(String(LIGHT_OFF))) 
-            External_Relay_1_state = 0; 
+            handle_grow_light_cmd(0);
     } 
-
-  if (String(MQTT_TOPIC_CMD4).equals(p_topic)) 
-    {
-      if (payload.equals(String(LIGHT_ON)))              
-            External_Relay_2_state = 1;          
-      else 
-        if (payload.equals(String(LIGHT_OFF))) 
-            External_Relay_2_state = 0; 
-    } 
-
+ 
   MQTT_publish();
 }
 
